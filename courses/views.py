@@ -30,7 +30,7 @@ class CourseListCreateAPIView(APIView):
         serializer = CourseSerializer(data=request.data)
 
         if serializer.is_valid():
-            course = serializer.save()
+            course = serializer.save(instructor=request.user)
             return Response(
                 CourseSerializer(course).data,
                 status=status.HTTP_201_CREATED,
